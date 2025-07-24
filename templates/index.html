@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Lyrics Finder</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>🎤 Lyrics Finder</h1>
+    <input type="text" id="artist" placeholder="Artist">
+    <input type="text" id="title" placeholder="Song Title">
+    <button onclick="findLyrics()">Search</button>
+    <div id="result"></div>
+  </div>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
