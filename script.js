@@ -1,5 +1,3 @@
-const token = 'YtshLNbLI2N_hOOY0W4YTq7xRb9x5JmXCAYHaBx3mQaPEduKDP7-XIWZU9gH6Vu-'; // Replace this
-
 document.getElementById('lyrics-form').addEventListener('submit', async function(e) {
   e.preventDefault();
 
@@ -11,11 +9,9 @@ document.getElementById('lyrics-form').addEventListener('submit', async function
 
   try {
     const query = `${artist} ${title}`;
-    const res = await fetch(`https://api.genius.com/search?q=${encodeURIComponent(query)}`, {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    });
+    const res = await fetch(`/api/lyrics?query=${encodeURIComponent(query)}`);
+
+    if (!res.ok) throw new Error('Network response was not ok');
 
     const json = await res.json();
     const hits = json.response.hits;

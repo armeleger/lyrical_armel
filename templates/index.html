@@ -1,18 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Lyrics Finder</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
 </head>
 <body>
   <div class="container">
-    <h1>🎤 Lyrics Finder</h1>
-    <input type="text" id="artist" placeholder="Artist">
-    <input type="text" id="title" placeholder="Song Title">
-    <button onclick="findLyrics()">Search</button>
-    <div id="result"></div>
+    <h1>Lyrics Finder</h1>
+    <form id="lyrics-form">
+      <input id="artist" placeholder="Artist Name" required />
+      <input id="title" placeholder="Song Title" required />
+      <button type="submit">Get Lyrics</button>
+    </form>
+    <div id="output"></div>
   </div>
+
   <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
