@@ -3,19 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Lyrics Finder</title>
+  <title>Lyrical By Armeleger</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
 </head>
 <body>
-  <div class="container">
-    <h1>Lyrics Finder</h1>
-    <form id="lyrics-form">
-      <input id="artist" placeholder="Artist Name" required />
-      <input id="title" placeholder="Song Title" required />
-      <button type="submit">Get Lyrics</button>
+  <main class="container">
+    <header>
+      <h1><span class="highlight">LrYiCaL by Kirarmeleger</span></h1>
+      <p>Your personal lyrics finder. Discover the words to every song.</p>
+    </header>
+
+    <form id="lyrics-form" autocomplete="off" spellcheck="false">
+      <input id="artist" type="text" placeholder="Artist name" required autofocus />
+      <input id="title" type="text" placeholder="Song title" required />
+      <button type="submit">Find Lyrics</button>
     </form>
-    <div id="output"></div>
-  </div>
+
+    <section id="output" class="output"></section>
+
+    <footer>
+      <small>Powered by <a href="https://genius.com" target="_blank" rel="noopener noreferrer">Genius API</a></small>
+    </footer>
+  </main>
 
   <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
