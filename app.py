@@ -1,37 +1,46 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, request, jsonify
 import requests
+import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 app = Flask(__name__)
 
-GENIUS_API_TOKEN = 'TiNR-fh7XS6EwGRmTZkznvB65LGU-DYgGAgUwVGd4JkI85m8tsN1EbH1BV5zkU0S'
+GENIUS_API_KEY = os.getenv("GENIUS_API_KEY")
+GENIUS_API_URL = "https://api.genius.com"
 
-@app.route('/')
-def index():
-    return render_template('index.html')
+@app.route("/lyrics", methods=["GET"])
+def get_lyrics():
+    artist = request.args.get("artist")
+    song = request.args.get("song")
 
-@app.route('/search', methods=['POST'])
-def search():
-    data = request.json
-    artist = data.get('artist')
-    title = data.get('title')
-    headers = {
-        'Authorization': f'Bearer {GENIUS_API_TOKEN}'
-    }
-    query = f'{title} {artist}'
-    url = f'https://api.genius.com/search?q={query}'
-    response = requests.get(url, headers=headers)
+    if not artist or not song:
+        return jsonify({"error": "Missing artist or song parameter"}), 400
 
-    if response.status_code == 200:
-        json_data = response.json()
-        hits = json_data['response']['hits']
-        if hits:
-            song_info = hits[0]['result']
-            return jsonify({
-                'full_title': song_info['full_title'],
-                'url': song_info['url'],
-                'thumbnail': song_info['song_art_image_thumbnail_url']
-            })
-    return jsonify({'error': 'Lyrics not found'}), 404
+    headers = {"Authorization": f"Bearer {GENIUS_API_KEY}"}
+    search_url = f"{GENIUS_API_URL}/search"
+    params = {"q": f"{artist} {song}"}
 
-if __name__ == '__main__':
+    response = requests.get(search_url, headers=headers, params=params)
+    if response.status_code != 200:
+        return jsonify({"error": "Failed to connect to Genius API"}), 500
+
+    data = response.json()
+    hits = data["response"]["hits"]
+    if not hits:
+        return jsonify({"error": "No results found"}), 404
+
+    # Get the first result
+    song_data = hits[0]["result"]
+    song_url = song_data["url"]
+
+    return jsonify({
+        "title": song_data["title"],
+        "artist": song_data["primary_artist"]["name"],
+        "url": song_url
+    })
+
+if __name__ == "__main__":
     app.run(debug=True)
