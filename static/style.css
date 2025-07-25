@@ -37,7 +37,7 @@ header h1 {
 }
 
 .highlight {
-  color: #0004ff;
+  color: #FFFC00;
 }
 
 header p {
@@ -66,13 +66,13 @@ input[type="text"] {
 }
 
 input[type="text"]:focus {
-  outline: 2px solid #0004ff;
+  outline: 2px solid #FFFC00;
   background: #292929;
   color: #fff;
 }
 
 button {
-  background: #0004ff;
+  background: #000000;
   border: none;
   padding: 0 1.5rem;
   font-weight: 700;
@@ -85,7 +85,7 @@ button {
 
 button:hover,
 button:focus {
-  background: #0004ff;
+  background: #FFFC00;
 }
 
 .output {
@@ -105,25 +105,6 @@ button:focus {
   color: #fdfdfd;
 }
 
-/* .output a {
-  color: #ffffff;
-  text-decoration: none;
-  font-weight: 600;
-}
-
-.output a:hover,
-.output a:focus {
-  text-decoration: underline;
-}
-
-.output img {
-  margin-top: 1rem;
-  max-width: 100%;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px #ffffff;
-  user-select: none;
-} */
-
 #output {
   text-align: center;
   margin-top: 20px;
@@ -141,7 +122,7 @@ button:focus {
   display: inline-block;
   margin-top: 10px;
   padding: 10px 16px;
-  background-color: #0004ff;
+  background-color: #5f5f5b;
   color: white;
   text-decoration: none;
   font-weight: bold;
@@ -150,7 +131,7 @@ button:focus {
 }
 
 #output a:hover {
-  background-color: #0004ff;
+  background-color: #FFFC00;
 }
 
 footer {
@@ -160,7 +141,7 @@ footer {
 }
 
 footer a {
-  color: #0004ff;
+  color: #FFFC00;
   text-decoration: none;
 }
 
