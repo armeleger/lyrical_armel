@@ -1,0 +1,3 @@
+Host armeleger-web-01
+    HostName 172.20.0.11
+    User ubuntu

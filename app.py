@@ -3,6 +3,7 @@ import requests
 import os
 from dotenv import load_dotenv
 
+# Load environment variables from .env
 load_dotenv()
 
 app = Flask(__name__)
@@ -23,11 +24,13 @@ def get_lyrics():
     headers = {"Authorization": f"Bearer {GENIUS_API_KEY}"}
     params = {"q": query}
 
-    response = requests.get(f"{GENIUS_API_URL}/search", headers=headers, params=params)
-    if response.status_code != 200:
+    try:
+        response = requests.get(f"{GENIUS_API_URL}/search", headers=headers, params=params)
+        response.raise_for_status()
+        return jsonify(response.json())
+    except Exception as e:
+        print(f"[ERROR] Genius API call failed: {e}")
         return jsonify({"error": "Failed to fetch from Genius"}), 500
 
-    return jsonify(response.json())
-
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=8080)
