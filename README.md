@@ -120,7 +120,16 @@ $ curl http://lb-01:8080
 ---
 
 ## Screenshots & Logs
-Embed screenshots or log samples here. (Example: run `curl -v ...` and include output.)
+
+Below are sample `curl` outputs and screenshot instructions to include:
+
+```
+curl -v http://web-01:8080
+curl -v http://web-02:8080
+curl -v http://<load-balancer-address>:8080
+```
+
+Include terminal screenshots or copy the above terminal log outputs here to demonstrate the responses change between `web-01` and `web-02`. (Paste images directly below if submitting a PDF/online repo, or commit .png files in a /screenshots folder and link them here.)
 
 ---
 
