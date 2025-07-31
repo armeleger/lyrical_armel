@@ -119,6 +119,10 @@ $ curl http://lb-01:8080
 
 ---
 
+## Demo Video
+
+Check out the demo video showcasing the full application in action here: [YouTube Demo Video](https://youtu.be/havED8QlTqc?si=pBoRHeBiJzvgcWm_)
+
 ## Screenshots & Logs
 
 ### Deployment Test Evidence
