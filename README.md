@@ -121,15 +121,43 @@ $ curl http://lb-01:8080
 
 ## Screenshots & Logs
 
-Below are sample `curl` outputs and screenshot instructions to include:
+### Deployment Test Evidence
 
-```
-curl -v http://web-01:8080
-curl -v http://web-02:8080
-curl -v http://<load-balancer-address>:8080
+**Docker Push Success:**
+```bash
+$ docker push armeleger/lyrics-finder-app:v1
+The push refers to repository [docker.io/armeleger/lyrics-finder-app]
+f02d7972f54b: Layer already exists 
+02ba7daa58b6: Layer already exists 
+8fea060dfebb: Layer already exists 
+dd8f9ee5c892: Layer already exists 
+59e22667830b: Layer already exists 
+248a0de8cc80: Layer already exists 
+91067d9e3807: Layer already exists 
+9db6c4940173: Already exists 
+58b24570cddd: Layer already exists 
+v1: digest: sha256:eb640466abda969bcfe82900d9bebd0873f7c3f90e779b59011aed7ce81e887f size: 856
 ```
 
-Include terminal screenshots or copy the above terminal log outputs here to demonstrate the responses change between `web-01` and `web-02`. (Paste images directly below if submitting a PDF/online repo, or commit .png files in a /screenshots folder and link them here.)
+**Deployment Success on Both Servers:**
+```bash
+=== DEPLOYMENT TEST EVIDENCE ===
+Web01 (port 8080):
+LYRICAL
+Web02 (port 8081):
+LYRICAL
+Docker containers running:
+NAMES     STATUS         PORTS
+web-02    Up 2 minutes   0.0.0.0:2212->22/tcp, [::]:2212->22/tcp, 0.0.0.0:8081->8080/tcp, [::]:8081->8080/tcp
+web-01    Up 2 minutes   0.0.0.0:8080->8080/tcp, [::]:8080->8080/tcp, 0.0.0.0:2211->22/tcp, [::]:2211->22/tcp
+lb-01     Up 2 minutes   0.0.0.0:2210->22/tcp, [::]:2210->22/tcp, 0.0.0.0:8082->80/tcp, [::]:8082->80/tcp
+```
+
+**Application Successfully Running:**
+- ✅ Web01: http://localhost:8080 - Lyrics app responding
+- ✅ Web02: http://localhost:8081 - Lyrics app responding  
+- ✅ Load Balancer: http://localhost:8082 - HAProxy configured
+- ✅ Docker Hub: Image publicly available at `armeleger/lyrics-finder-app:v1`
 
 ---
 
